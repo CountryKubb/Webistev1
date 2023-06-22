@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}</title>
+  <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
+  {{ content_for_header }}
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__logo">
+      <a href="/">
+        <img src="{{ 'logo.png' | asset_url }}" alt="Logo">
+      </a>
+    </div>
+    <nav class="site-header__navigation">
+      <ul>
+        {% for link in linklists.main-menu.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="site-header__cart">
+      <a href="/cart">
+        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+        <img src="{{ 'cart-icon.png' | asset_url }}" alt="Cart">
+      </a>
+    </div>
+  </header>
+
+  <main class="site-main">
+    {{ content_for_layout }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__logo">
+      <img src="{{ 'footer-logo.png' | asset_url }}" alt="Footer Logo">
+    </div>
+    <div class="site-footer__menu">
+      <ul>
+        {% for link in linklists.footer-menu.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="site-footer__social">
+      <a href="https://facebook.com/yourstore" target="_blank">
+        <img src="{{ 'facebook-icon.png' | asset_url }}" alt="Facebook">
+      </a>
+      <a href="https://instagram.com/yourstore" target="_blank">
+        <img src="{{ 'instagram-icon.png' | asset_url }}" alt="Instagram">
+      </a>
+    </div>
+    <div class="site-footer__copyright">
+      <p>&copy; {{ 'now' | date: '%Y' }} Your Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{{ 'main.js' | asset_url }}"></script>
+  {{ content_for_footer }}
+</body>
+</html>
